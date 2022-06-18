@@ -45,6 +45,9 @@ const Login = () => {
     catch (error) {
       setErrorMssg(error.message)
       openNotificationWithIcon(error.message)
+      notification['error']({
+        message: 'User login failed !',
+      });
     }
 
   }

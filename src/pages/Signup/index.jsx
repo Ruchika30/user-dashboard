@@ -46,6 +46,9 @@ const Signup = () => {
     }
     catch (error) {
       setErrorMssg(error.message)
+      notification['error']({
+        message: 'User Registeration failed !',
+      });
     }
 
   }

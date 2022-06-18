@@ -14,8 +14,9 @@ const style = {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginTop: '5%'
     },
 
     button: {

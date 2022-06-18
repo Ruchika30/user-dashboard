@@ -7,6 +7,7 @@ import useAuth from '../../hooks/useAuth'
 import CreateUserModal from './createUserModal'
 import DeleteUserModal from './DeleteUserModal'
 import UpdateModal from './updateModal'
+import { Keys } from '../../network/key'
 
 const TableComponent = () => {
     const history = useHistory()
@@ -104,13 +105,17 @@ const TableComponent = () => {
             })
             if (response) {
                 notification['success']({
-                    message: 'User Created',
+                    message: 'User Created !',
                 });
             }
             setCreateUserModal(false)
         }
         catch (error) {
             console.log(" create user error", error.message)
+            notification['error']({
+                message: 'User Creation failed !',
+                description: error.message
+            });
         }
     }
 
@@ -123,13 +128,17 @@ const TableComponent = () => {
             })
             if (response) {
                 notification['success']({
-                    message: 'User Updated',
+                    message: 'User Updated !',
                 });
             }
             setshowUpdateModal(false)
         }
         catch (error) {
             console.log(" update user error", error.message)
+            notification['error']({
+                message: 'User Update failed !',
+                description: error.message
+            });
         }
     }
 
@@ -140,13 +149,17 @@ const TableComponent = () => {
             })
             if (response) {
                 notification['success']({
-                    message: 'User deleted',
+                    message: 'User deleted !',
                 });
             }
             setshowDeleteModal(false)
         }
         catch (error) {
             console.log(" create user error", error.message)
+            notification['error']({
+                message: 'User Deletion failed !',
+                description: error.message
+            });
         }
     }
 
@@ -170,6 +183,15 @@ const TableComponent = () => {
     const goToLogin = () => {
         history.push(pageRoutes.login)
     }
+    const handleLogout = () => {
+        if (isLoggedIn) {
+            localStorage.removeItem(Keys.authToken)
+            history.push(pageRoutes.login)
+            notification['success']({
+                message: 'User Logged out !',
+            });
+        }
+    }
 
     const hanleNewUsername = (e) => {
         setUsername(e.target.value)
@@ -189,6 +211,9 @@ const TableComponent = () => {
                     </Button>
                     {!isLoggedIn && <Button type="primary" onClick={goToLogin} style={{ marginLeft: '10px' }} >
                         Log In
+                    </Button>}
+                    {isLoggedIn && <Button type="primary" onClick={handleLogout} style={{ marginLeft: '10px' }} >
+                        Log Out
                     </Button>}
                 </div>
 
