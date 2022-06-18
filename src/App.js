@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import React, { Suspense, lazy } from 'react';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
+import 'antd/dist/antd.css';
 
-function App() {
+
+
+const SignupPage = lazy(() => import('./pages/Signup'))
+const ListUsers = lazy(() => import('./pages/ListUsers'))
+const LoginPage = lazy(() => import('./pages/Login'))
+
+const App = () => {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Router>
+        <Suspense fallback={<div className="loader centerLoader" />}>
+          <Switch>
+            <Route exact path="/" component={SignupPage} />
+            <Route exact path="/login" component={LoginPage} />
+
+            <Route exact path="/users" component={ListUsers} />
+
+            {/* <Route  exact path="/" component={SignupPage} /> */}
+            {/* <Route  exact path="/" component={Dashboard} /> */}
+          </Switch>
+        </Suspense>
+      </Router>
     </div>
+
   );
 }
 
