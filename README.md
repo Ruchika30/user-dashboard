@@ -1,6 +1,15 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+A user can create , update or delete a user only if it is authenticated. So it has to be a loggedin user.
+Not everyone can register. There is a defined list of valid user list which can be checked out by clicking
+on Users list button. Only those users can Log in & have the other privilages
+
+# Available Pages 
+
+- Signup page  - '/'
+- Login page  - '/login
+- Users list  - '/users
+
 
 ## Available Scripts
 
